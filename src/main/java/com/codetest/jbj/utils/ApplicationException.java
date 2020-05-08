@@ -1,12 +1,12 @@
 package com.codetest.jbj.utils;
 
-public class AppException extends Exception {
+public class ApplicationException extends Exception {
     String errorMsg;
     Throwable th;
-    public AppException(){
+    public ApplicationException(){
         super();
     }
-    public AppException(String errorMsg){
+    public ApplicationException(String errorMsg){
         super(errorMsg);
         this.errorMsg=errorMsg;
     }

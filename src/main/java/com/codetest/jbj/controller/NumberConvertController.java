@@ -4,6 +4,9 @@ import com.codetest.jbj.bean.ConverterResult;
 import com.codetest.jbj.bean.FormatType;
 
 import com.codetest.jbj.service.NumberConverterService;
+import com.codetest.jbj.utils.ApplicationException;
+import com.codetest.jbj.utils.Constants;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +19,9 @@ public class NumberConvertController {
     @Autowired
     NumberConverterService numberConverterService;
 
+    @ApiOperation(value = "convert DECIMAL To ROMAN ",
+            response = ConverterResult.class)
+   @CrossOrigin(origins = Constants.FrontEnd_URL)
     @GetMapping("/toRoman/{num}")
     @ResponseBody
     public ResponseEntity<ConverterResult> convertToRoman(@PathVariable final int num) {
@@ -30,13 +36,17 @@ public class NumberConvertController {
 
             return new ResponseEntity<>(convertResponse, HttpStatus.OK);
 
-        }catch (Exception ex){
+        }catch (ApplicationException ex){
             //log_exception
             ex.printStackTrace();
         }
         return new ResponseEntity<>( HttpStatus.EXPECTATION_FAILED);
     }
 
+    @ApiOperation(value = "convert DECIMAL To  ROMAN or BINARY or HEXADECIMAL",
+            response = ConverterResult.class)
+
+    @CrossOrigin(origins = Constants.FrontEnd_URL)
     @GetMapping("/convert/{num}/{type}")
     @ResponseBody
     public ResponseEntity<ConverterResult> convertTo(@PathVariable final int num,
@@ -51,7 +61,7 @@ public class NumberConvertController {
 
             return new ResponseEntity<>(convertResponse, HttpStatus.OK);
 
-        }catch (Exception ex){
+        }catch (ApplicationException ex){
             //log_exception
             ex.printStackTrace();
         }

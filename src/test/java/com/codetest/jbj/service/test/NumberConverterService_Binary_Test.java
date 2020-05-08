@@ -32,20 +32,24 @@ public class NumberConverterService_Binary_Test {
 
     @Test
     void testConvertTo_Binary_with_Converter() {
+        boolean onError = false;
+        try{
+            String binaryOfTen = "1010";
+            String actual_binaryOfTen =
+                    converterService.convertTo(10, FormatType.BINARY);
+            assertEquals(binaryOfTen, actual_binaryOfTen);
 
-        String binaryOfTen = "1010";
-        String actual_binaryOfTen =
-                converterService.convertTo(10, FormatType.BINARY);
-        assertEquals(binaryOfTen, actual_binaryOfTen);
+            String _actual_binaryOfTen =
+                    converterService.convertTo(10, binaryConverter);
+            assertEquals(_actual_binaryOfTen, actual_binaryOfTen);
 
-        String _actual_binaryOfTen =
-                converterService.convertTo(10, binaryConverter);
-        assertEquals(_actual_binaryOfTen, actual_binaryOfTen);
-
-        String binaryOfZero = "0";
-        String actual_binaryOfZero =
-                converterService.convertTo(0, binaryConverter);
-        assertEquals(binaryOfZero, actual_binaryOfZero);
+            String binaryOfZero = "0";
+            String actual_binaryOfZero =
+                    converterService.convertTo(0, binaryConverter);
+            assertEquals(binaryOfZero, actual_binaryOfZero);
+        }catch (Exception ex){
+            assertTrue(onError);
+        }
     }
 
 

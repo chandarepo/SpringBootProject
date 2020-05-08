@@ -23,11 +23,13 @@ public class NumberConverterService_HexaDecimal_Test {
 
     @Test
     void testConvertTo_Hex() {
+        try {
+            String toHexString =
+                    converterService.convertTo(234, hexaDecimalConverter);
+            assertNotNull(toHexString);
+            assertEquals(toHexString, "ea");
+        }catch (Exception ex){
 
-        String toHexString =
-                converterService.convertTo(234, hexaDecimalConverter);
-
-        assertNotNull(toHexString);
-        assertEquals(toHexString, "ea");
+        }
     }
 }
