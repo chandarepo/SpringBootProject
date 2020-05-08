@@ -11,7 +11,7 @@ Used:
 
 Algorithm used to convert a given positive Decimal number to Roman and Binary.
 
-Factory patterns for Different types of Converter creation [ROMAN (default), BINARY, HEXADECIMAL].
+Factory patterns for Different types of Converter creation [ROMAN (default), BINARY, HEXADECIMAL, HINDI].
 
 Used Strategy Pattern for Different types of Converter injection.
 
