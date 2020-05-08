@@ -4,6 +4,7 @@ import com.codetest.jbj.bean.FormatType;
 import com.codetest.jbj.service.NumberConverter;
 
 import com.codetest.jbj.service.impl.BinaryConverter;
+import com.codetest.jbj.service.impl.HindiConverter;
 import com.codetest.jbj.service.impl.RomanConverter;
 
 
@@ -23,11 +24,15 @@ public class NumberConverterFactory {
              case HEXADECIMAL:
                  numberConverter =   (num) -> { return Integer.toHexString(num); };
                  break;
+             case HINDI:
+                 numberConverter = new HindiConverter();
+                 break;
              default:
                  numberConverter = new RomanConverter();
                  break;
          }
          return numberConverter;
      }
+
 
 }
