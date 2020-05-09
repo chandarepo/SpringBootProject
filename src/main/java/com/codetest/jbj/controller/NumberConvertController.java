@@ -26,7 +26,7 @@ public class NumberConvertController {
     @ResponseBody
     public ResponseEntity<ConverterResult> convertToRoman(@PathVariable final int num) {
 
-        if(num <= 0) return new ResponseEntity<>( HttpStatus.BAD_REQUEST);
+        if(num <= 0 || num > 1000) return new ResponseEntity<>( HttpStatus.BAD_REQUEST);
 
         try {
             String convertedString = numberConverterService.convertToRoman(num);
@@ -51,7 +51,7 @@ public class NumberConvertController {
     @ResponseBody
     public ResponseEntity<ConverterResult> convertTo(@PathVariable final int num,
                                                      @PathVariable final FormatType type) {
-        if(num <= 0 && type == FormatType.ROMAN)
+        if(num <= 0 || num > 1000)
             return new ResponseEntity<>( HttpStatus.BAD_REQUEST);
 
         try {
