@@ -12,16 +12,25 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.impl.StaticLoggerBinder;
+
 @RestController
 @RequestMapping("/number-converter")
 public class NumberConvertController {
 
+    private static final Logger logger = LoggerFactory.getLogger(NumberConvertController.class);
+
+    // This is what SLF4J uses to bind to a specific logging implementation
+    final StaticLoggerBinder binder = StaticLoggerBinder.getSingleton();
+
+
     @Autowired
     NumberConverterService numberConverterService;
 
-    @ApiOperation(value = "convert DECIMAL To ROMAN ",
-            response = ConverterResult.class)
-   @CrossOrigin(origins = Constants.FrontEnd_URL)
+    @ApiOperation(value = "convert DECIMAL To ROMAN ", response = ConverterResult.class)
+    @CrossOrigin(origins = Constants.FrontEnd_URL)
     @GetMapping("/toRoman/{num}")
     @ResponseBody
     public ResponseEntity<ConverterResult> convertToRoman(@PathVariable final int num) {
@@ -37,21 +46,19 @@ public class NumberConvertController {
             return new ResponseEntity<>(convertResponse, HttpStatus.OK);
 
         }catch (ApplicationException ex){
-            //log_exception
-            ex.printStackTrace();
+            logger.error(ex.getMessage());
         }
         return new ResponseEntity<>( HttpStatus.EXPECTATION_FAILED);
     }
 
-    @ApiOperation(value = "convert DECIMAL To  ROMAN or BINARY or HEXADECIMAL",
-            response = ConverterResult.class)
+    @ApiOperation(value = "convert DECIMAL To  ROMAN or BINARY or HEXADECIMAL", response = ConverterResult.class)
 
     @CrossOrigin(origins = Constants.FrontEnd_URL)
     @GetMapping("/convert/{num}/{type}")
     @ResponseBody
     public ResponseEntity<ConverterResult> convertTo(@PathVariable final int num,
                                                      @PathVariable final FormatType type) {
-        if(num <= 0 || num > 1000)
+        if((num <= 0 || num > 1000) && type == FormatType.ROMAN )
             return new ResponseEntity<>( HttpStatus.BAD_REQUEST);
 
         try {
@@ -62,8 +69,7 @@ public class NumberConvertController {
             return new ResponseEntity<>(convertResponse, HttpStatus.OK);
 
         }catch (ApplicationException ex){
-            //log_exception
-            ex.printStackTrace();
+            logger.error(ex.getMessage());
         }
         return new ResponseEntity<>( HttpStatus.EXPECTATION_FAILED);
     }
