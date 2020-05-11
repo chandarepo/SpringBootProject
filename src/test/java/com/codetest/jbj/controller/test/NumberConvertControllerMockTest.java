@@ -12,6 +12,7 @@ import com.codetest.jbj.controller.NumberConvertController;
 import com.codetest.jbj.service.NumberConverterService;
 import org.junit.jupiter.api.Test;
 
+import org.mockito.exceptions.base.MockitoException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -248,7 +249,27 @@ public class NumberConvertControllerMockTest {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("1100100")));
+    }
 
-
+    @Test
+    public void convertToRomanShouldReturnHTTPStatus400_BAD_REQUEST_0() throws Exception {
+        when(service.convertTo(0, FormatType.ROMAN)).thenThrow(new MockitoException(""));
+        this.mockMvc.perform(get("/number-converter/convert/0/ROMAN"))
+                .andDo(print())
+                .andExpect(status().isBadRequest());
+    }
+    @Test
+    public void convertToRomanShouldReturnHTTPStatus400_BAD_REQUEST_1001() throws Exception {
+        when(service.convertTo(1001, FormatType.ROMAN)).thenThrow(new MockitoException(""));
+        this.mockMvc.perform(get("/number-converter/convert/1001/ROMAN"))
+                .andDo(print())
+                .andExpect(status().isBadRequest());
+    }
+    @Test
+    public void convertToRomanShouldReturnHTTPStatus400_BAD_REQUEST_NegativeNumbers() throws Exception {
+        when(service.convertTo(-100, FormatType.ROMAN)).thenThrow(new MockitoException(""));
+        this.mockMvc.perform(get("/number-converter/convert/-100/ROMAN"))
+                .andDo(print())
+                .andExpect(status().isBadRequest());
     }
 }
