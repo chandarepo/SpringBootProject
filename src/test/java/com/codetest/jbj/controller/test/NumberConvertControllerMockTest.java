@@ -21,6 +21,8 @@ import org.springframework.test.web.servlet.MockMvc;
 @WebMvcTest(NumberConvertController.class)
 public class NumberConvertControllerMockTest {
 
+    public NumberConvertControllerMockTest(){}
+
     @Autowired
     private MockMvc mockMvc;
 

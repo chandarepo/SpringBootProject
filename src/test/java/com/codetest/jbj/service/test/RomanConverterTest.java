@@ -13,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class RomanConverterTest {
+    public RomanConverterTest(){}
 
     private final int[] divisors =
             {1, 4, 5, 9, 10, 40, 50, 90, 100, 400, 500, 900, 1000};

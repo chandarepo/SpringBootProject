@@ -16,6 +16,7 @@ import java.util.Random;
 
 @SpringBootTest
 public class NumberConverterService_Roman_Test {
+    public NumberConverterService_Roman_Test(){}
 
     @Autowired
     NumberConverterService numberConverterService;

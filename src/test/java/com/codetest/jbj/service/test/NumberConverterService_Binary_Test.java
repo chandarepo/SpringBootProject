@@ -14,6 +14,8 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 public class NumberConverterService_Binary_Test {
 
+    public NumberConverterService_Binary_Test(){}
+
     @Autowired
     NumberConverterService converterService;
 

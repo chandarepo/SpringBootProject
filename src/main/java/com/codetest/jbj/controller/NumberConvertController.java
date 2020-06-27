@@ -14,17 +14,12 @@ import org.springframework.web.bind.annotation.*;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.slf4j.impl.StaticLoggerBinder;
 
 @RestController
 @RequestMapping("/number-converter")
 public class NumberConvertController {
 
-    private static final Logger logger = LoggerFactory.getLogger(NumberConvertController.class);
-
-    // This is what SLF4J uses to bind to a specific logging implementation
-    final StaticLoggerBinder binder = StaticLoggerBinder.getSingleton();
-
+    private final Logger logger = LoggerFactory.getLogger(NumberConvertController.class);
 
     @Autowired
     NumberConverterService numberConverterService;

@@ -11,6 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest
 public class NumberConverterService_HexaDecimal_Test {
+    public NumberConverterService_HexaDecimal_Test(){}
     @Autowired
     NumberConverterService converterService;
 
