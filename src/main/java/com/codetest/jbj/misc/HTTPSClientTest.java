@@ -22,7 +22,7 @@ import java.security.cert.X509Certificate;
 
 public class HTTPSClientTest {
 
-    @Value("${api.url:http://localhost:8080/api}")
+    @Value("${url from application.yml}")
     URI uri;
 
     @Value("${password from application.yml}")
